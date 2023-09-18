@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateActionUpdate;
 use App\Models\Support;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,7 @@ class SupportController extends Controller
         return view('admin/supports/create');
     }
 
-    public function createAction(Request $request, Support $support)
+    public function createAction(CreateActionUpdate $request, Support $support)
     {
         $data = $request->all();
         $data['status'] = 'a';
