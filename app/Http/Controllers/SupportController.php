@@ -74,4 +74,17 @@ class SupportController extends Controller
 
         return redirect()->route('supports.index');
     }
+
+    public function deleteAction(string|int $id, Support $support)
+    {
+        $support = Support::where('id', $id)->first();
+
+        if (!$support) {
+            return redirect()->route('supports.index');
+        }
+
+        $support->delete();
+
+        return redirect()->route('supports.index');
+    }
 }

@@ -11,4 +11,6 @@ Route::put('/supports/{id}', [SupportController::class, 'editAction'])->name('su
 Route::get('/supports/create', [SupportController::class, 'create'])->name('supports.create');
 Route::post('/supports', [SupportController::class, 'createAction'])->name('supports.createAction');
 
+Route::delete('supports/{id}/delete', [SupportController::class, 'deleteAction'])->name('supports.deleteAction');
+
 Route::get('/supports/{id}', [SupportController::class, 'show'])->name('supports.show');
