@@ -3,14 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateActionUpdate;
+use App\Http\Services\SupportService;
 use App\Models\Support;
 use Illuminate\Http\Request;
 
 class SupportController extends Controller
 {
-    public function index(Support $support)
+    public function __construct(
+        protected SupportService $service
+    ) {
+    }
+
+    public function index(Request $request)
     {
-        $supports = $support->all();
+        // $supports = $support->all();
+        $supports = $this->service->getAll($request->filter);
 
         return view('admin/supports/index', [
             'supports' => $supports,
@@ -19,9 +26,8 @@ class SupportController extends Controller
 
     public function show(string|int $id)
     {
-        // Support::where('id', $id)->first();
-        // Support::where('id', '!=', $id)->first();
-        $support = Support::find($id);
+        // $support = Support::find($id);
+        $support = $this->service->findOne($id);
 
         if (!$support) {
             return redirect()->route('supports.index');
@@ -47,9 +53,10 @@ class SupportController extends Controller
         return redirect()->route('supports.index');
     }
 
-    public function edit(string|int $id)
+    public function edit(string $id)
     {
-        $support = Support::where('id', $id)->first();
+        // $support = Support::where('id', $id)->first();
+        $support = $this->service->findOne($id);
 
         if (!$support) {
             return redirect()->route('supports.index');
@@ -60,7 +67,7 @@ class SupportController extends Controller
         ]);
     }
 
-    public function editAction(string|int $id, Request $request, Support $support)
+    public function editAction(string|int $id, CreateActionUpdate $request, Support $support)
     {
         $support = Support::where('id', $id)->first();
 
@@ -68,23 +75,32 @@ class SupportController extends Controller
             return redirect()->route('supports.edit');
         }
 
+        // $support->subject = $request->subject;
+        // $support->subject = $request->body;
+        // $support->save();
+
         $support->update($request->only([
             'subject',
             'body',
         ]));
 
+        // Pegar os campos que somente foram validados
+        // $support->update($request->validate());
+
         return redirect()->route('supports.index');
     }
 
-    public function deleteAction(string|int $id, Support $support)
+    public function deleteAction(string $id)
     {
-        $support = Support::where('id', $id)->first();
+        // $support = Support::where('id', $id)->first();
 
-        if (!$support) {
-            return redirect()->route('supports.index');
-        }
+        // if (!$support) {
+        //     return redirect()->route('supports.index');
+        // }
 
-        $support->delete();
+        // $support->delete();
+
+        $this->service->delete($id);
 
         return redirect()->route('supports.index');
     }

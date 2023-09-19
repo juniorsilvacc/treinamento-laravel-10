@@ -1,5 +1,11 @@
 <h1>Editar Dúvida: {{ $support->id }} </h1>
 
+@if ($errors->any())
+    @foreach ($errors->all() as $error)
+        {{ $error }}
+    @endforeach
+@endif
+
 <form action="{{ route('supports.editAction', $support->id) }}" method="POST">
     <input type="hidden" value={{ csrf_token() }} name="_token">
 
