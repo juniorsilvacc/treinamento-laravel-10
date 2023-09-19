@@ -18,7 +18,6 @@ class SupportController extends Controller
 
     public function index(Request $request)
     {
-        // $supports = $support->all();
         $supports = $this->service->getAll($request->filter);
 
         return view('admin/supports/index', [
@@ -28,7 +27,6 @@ class SupportController extends Controller
 
     public function show(string|int $id)
     {
-        // $support = Support::find($id);
         $support = $this->service->findOne($id);
 
         if (!$support) {
@@ -47,11 +45,7 @@ class SupportController extends Controller
 
     public function createAction(CreateActionUpdate $request)
     {
-        // $data = $request->all();
-        // $data['status'] = 'a';
-
-        // $support->create($data);
-        $this->service->new(
+        $this->service->create(
             CreateSupportDTO::makeFromRequest($request)
         );
 
@@ -60,7 +54,6 @@ class SupportController extends Controller
 
     public function edit(string $id)
     {
-        // $support = Support::where('id', $id)->first();
         $support = $this->service->findOne($id);
 
         if (!$support) {
@@ -74,7 +67,6 @@ class SupportController extends Controller
 
     public function editAction(CreateActionUpdate $request, Support $support)
     {
-        // $support = Support::where('id', $id)->first();
         $support = $this->service->update(
             UpdateSupportDTO::makeFromRequest($request)
         );
@@ -83,31 +75,11 @@ class SupportController extends Controller
             return redirect()->route('supports.edit');
         }
 
-        // $support->subject = $request->subject;
-        // $support->subject = $request->body;
-        // $support->save();
-
-        // $support->update($request->only([
-        //     'subject',
-        //     'body',
-        // ]));
-
-        // Pegar os campos que somente foram validados
-        // $support->update($request->validate());
-
         return redirect()->route('supports.index');
     }
 
     public function deleteAction(string $id)
     {
-        // $support = Support::where('id', $id)->first();
-
-        // if (!$support) {
-        //     return redirect()->route('supports.index');
-        // }
-
-        // $support->delete();
-
         $this->service->delete($id);
 
         return redirect()->route('supports.index');

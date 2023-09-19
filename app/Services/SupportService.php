@@ -4,14 +4,14 @@ namespace App\Http\Services;
 
 use App\Dtos\CreateSupportDTO;
 use App\Dtos\UpdateSupportDTO;
+use App\Http\Repository\SupportRepositoryInterface;
 use stdClass;
 
 class SupportService
 {
-    protected $repository;
-
-    public function __construct()
-    {
+    public function __construct(
+        protected SupportRepositoryInterface $repository
+    ) {
     }
 
     public function getAll(string $filter = null): array
@@ -24,9 +24,9 @@ class SupportService
         return $this->repository->findOne($id);
     }
 
-    public function new(CreateSupportDTO $dto): stdClass
+    public function create(CreateSupportDTO $dto): stdClass
     {
-        return $this->repository->new($dto);
+        return $this->repository->create($dto);
     }
 
     public function update(UpdateSupportDTO $dto): stdClass|null
