@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Services;
 
 use App\Dtos\CreateSupportDTO;
 use App\Dtos\UpdateSupportDTO;
-use App\Http\Repository\SupportRepositoryInterface;
+use App\Repositories\SupportRepositoryInterface;
 use stdClass;
 
 class SupportService

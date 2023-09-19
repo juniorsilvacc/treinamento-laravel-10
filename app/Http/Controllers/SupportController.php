@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Dtos\CreateSupportDTO;
 use App\Dtos\UpdateSupportDTO;
 use App\Http\Requests\CreateActionUpdate;
-use App\Http\Services\SupportService;
+
 use App\Models\Support;
+use App\Services\SupportService;
 use Illuminate\Http\Request;
 
 class SupportController extends Controller

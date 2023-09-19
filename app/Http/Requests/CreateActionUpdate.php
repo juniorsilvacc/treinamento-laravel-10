@@ -41,7 +41,6 @@ class CreateActionUpdate extends FormRequest
                 'required',
                 'min:3',
                 'max:255',
-                // "unique:supports, subject, {$this->id}, id",
                 // Único na tabela supports, mas ignore quando ID for o mesmo
                 Rule::unique('supports')->ignore($this->id),
             ];
