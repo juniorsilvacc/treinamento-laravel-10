@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Dtos\CreateSupportDTO;
+use App\Dtos\UpdateSupportDTO;
 use App\Http\Requests\CreateActionUpdate;
 use App\Http\Services\SupportService;
 use App\Models\Support;
@@ -43,12 +45,15 @@ class SupportController extends Controller
         return view('admin/supports/create');
     }
 
-    public function createAction(CreateActionUpdate $request, Support $support)
+    public function createAction(CreateActionUpdate $request)
     {
-        $data = $request->all();
-        $data['status'] = 'a';
+        // $data = $request->all();
+        // $data['status'] = 'a';
 
-        $support->create($data);
+        // $support->create($data);
+        $this->service->new(
+            CreateSupportDTO::makeFromRequest($request)
+        );
 
         return redirect()->route('supports.index');
     }
@@ -67,9 +72,12 @@ class SupportController extends Controller
         ]);
     }
 
-    public function editAction(string|int $id, CreateActionUpdate $request, Support $support)
+    public function editAction(CreateActionUpdate $request, Support $support)
     {
-        $support = Support::where('id', $id)->first();
+        // $support = Support::where('id', $id)->first();
+        $support = $this->service->update(
+            UpdateSupportDTO::makeFromRequest($request)
+        );
 
         if (!$support) {
             return redirect()->route('supports.edit');
@@ -79,10 +87,10 @@ class SupportController extends Controller
         // $support->subject = $request->body;
         // $support->save();
 
-        $support->update($request->only([
-            'subject',
-            'body',
-        ]));
+        // $support->update($request->only([
+        //     'subject',
+        //     'body',
+        // ]));
 
         // Pegar os campos que somente foram validados
         // $support->update($request->validate());
