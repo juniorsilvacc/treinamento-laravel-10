@@ -27,6 +27,20 @@ class SupportEloquentORM implements SupportRepositoryInterface
             ->toArray();
     }
 
+    public function paginate(int $page = 1, int $totalPerPage = 15, string $filter = null): PaginationInterface
+    {
+        $result = $this->model
+            ->where(function ($query) use ($filter) {
+                if ($filter) {
+                    $query->where('subject', $filter);
+                    $query->orWhere('body', 'like', "%{$filter}%");
+                }
+            })
+            ->paginate($totalPerPage, ['*'], 'page', $page);
+
+        return new PaginationPresenter($result);
+    }
+
     public function findOne(string $id): stdClass|null
     {
         $support = $this->model->find($id);
