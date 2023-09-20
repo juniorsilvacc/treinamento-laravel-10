@@ -10,12 +10,14 @@
 </head>
 <body>
     <div>
-        <div class="container">
-            <div class="row">
-                @yield('header')
+        <div class="container mx-auto py-2 px-2">
+            @yield('header')
 
+            <div>
+                <x-message/>
                 @yield('content')
             </div>
+
         </div>
     </div>
 </body>

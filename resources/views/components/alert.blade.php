@@ -1,7 +1,8 @@
-<div class="alert alert-danger">
-    @if ($errors->any())
+@if ($errors->any())
+    <div class="alert alert-danger py-2" role="alert">
         @foreach ($errors->all() as $error)
             {{ $error }}
         @endforeach
-    @endif
-</div>
+    </div>
+@endif
+
