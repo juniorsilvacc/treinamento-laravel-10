@@ -1,0 +1,51 @@
+* {
+    padding: 0;
+    margin: 0;
+    background: #111827;
+    color: #FFF;
+}
+
+.btn a{
+    padding: 8px;
+    border: 1px solid #FFF;
+    text-transform: none;
+    text-decoration: none;
+    border-radius: 4px;
+    color: #FFF;
+    transition: 250ms ease-in-out;
+}
+
+.btn a:hover {
+    border: 1px solid #b4b4b4;
+    color: #b4b4b4;
+}
+
+.custom_doubt{
+    margin-left: 10px !important;
+    font-size: 11px;
+    background: #134d02;
+    border: none;
+    border-radius: 30px;
+    padding: 4px;
+}
+
+.status {
+    border: none;
+    font-size: 11px;
+    border-radius: 30px;
+    padding: 5px;
+    background: #1e7703;
+}
+
+.custom_navigation {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.custom_navigation a{
+    text-decoration: none;
+}
+
+.custom_previous {
+    margin-right: 20px;
+}
