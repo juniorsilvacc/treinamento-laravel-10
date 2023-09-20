@@ -13,9 +13,7 @@
                     <td>{{ $support->id }}</td>
                     <td>{{ $support->subject }}</td>
                     <td>
-                        <span class="status">
-                            {{ getStatusSupport($support->status) }}
-                        </span>
+                        <x-status-support :status="$support->status"></x-status-support>
                     </td>
                     <td>{{ $support->body }}</td>
                     <td>

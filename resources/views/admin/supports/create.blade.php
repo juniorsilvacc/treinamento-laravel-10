@@ -3,7 +3,7 @@
 @section('title', 'Nova Dúvida')
 
 @section('header')
-    <h1>Nova Dúvida</h1>
+    <h4>Nova Dúvida</h4>
 @endsection
 
 @section('content')

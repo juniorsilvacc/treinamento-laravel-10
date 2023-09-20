@@ -14,8 +14,6 @@ enum SupportStatus: string
             if ($name === $status->name) {
                 return $status->value;
             }
-
-            throw new \ValueError("$status is not valid");
         }
     }
 }

@@ -3,7 +3,7 @@
 @section('title', 'Editar Dúvida')
 
 @section('header')
-    <h1>Editar Dúvida: {{ $support->id }} </h1>
+    <h4>Editar Dúvida: {{ $support->id }} </h4>
 @endsection
 
 @section('content')

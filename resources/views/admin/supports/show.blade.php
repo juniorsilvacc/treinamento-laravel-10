@@ -1,14 +1,14 @@
-<h1>Detalhes da dúvida: {{$support->id}} </h1>
+@extends('admin.layouts.app')
 
-<ul>
-    <li>Id: {{$support->id}}</li>
-    <li>Assunto: {{$support->subject}}</li>
-    <li>Status: {{$support->status}}</li>
-    <li>Descrição: {{$support->body}}</li>
-</ul>
+@section('title', 'Detalhes')
 
-<form action="{{ route('supports.deleteAction', $support->id) }}" method="POST">
-    @csrf
-    @method('DELETE')
-    <button type="submit">Excluir</button>
-</form>
+@section('header')
+    <h4>Detalhes da dúvida: {{$support->id}} </h4>
+@endsection
+
+@section('content')
+    @include('admin.supports.partials.list')
+@endsection
+
+
+
